@@ -38,7 +38,7 @@ async function getCurrencies() {
       let code = ['-'];
 
       if (currencies) {
-        code = Object.keys(currencies);
+        code = Object.keys(currencies).join(", ");
       }
 
       return code;

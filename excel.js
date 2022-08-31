@@ -36,6 +36,11 @@ ws.cell(2, 2).string('Capital').style(headerStyle);
 ws.cell(2, 3).string('Area').style(headerStyle);
 ws.cell(2, 4).string('Currencies').style(headerStyle);
 
+ws.column(1).setWidth(39);
+ws.column(2).setWidth(27);
+ws.column(3).setWidth(13);
+ws.column(4).setWidth(14);
+
 let areaStyle = {
   numberFormat: '###,###,###,###.00'
 }
@@ -53,31 +58,37 @@ countries.getNames()
   .then(data => data.forEach(name => {
     ws.cell(nameCounter, 1).string(name);
     nameCounter++;
-    console.log(name);
+    return data;
   }))
 
   // capitals
-  .then(countries.getCapitals())
+  .then(data => {
+    data = countries.getCapitals();
+    return data;
+  })
   .then(data => data.forEach(capitals => {
     ws.cell(capitalCounter, 2).string(capitals);
     capitalCounter++;
-    console.log(capitals);
   }))
 
   // areas
-  .then(countries.getAreas())
+  .then(data => {
+    data = countries.getAreas();
+    return data;
+  })
   .then(data => data.forEach(area => {
-    ws.cell(areaCounter, 3).string(area).style(areaStyle);
+    ws.cell(areaCounter, 3).number(area).style(areaStyle);
     areaCounter++;
-    console.log(area)
   }))
 
   // currencies
-  .then(countries.getCurrencies())
+  .then(data => {
+    data = countries.getCurrencies();
+    return data;
+  })
   .then(data => data.forEach(currencies => {
     ws.cell(currencyCounter, 4).string(currencies);
     currencyCounter++;
-    console.log(currencies);
   }))
 
   // create XLSX file
