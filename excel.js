@@ -64,6 +64,7 @@ countries.getNames()
   // capitals
   .then(data => {
     data = countries.getCapitals();
+    console.log('Names obtained. Getting capital cities...');
     return data;
   })
   .then(data => data.forEach(capitals => {
@@ -74,6 +75,7 @@ countries.getNames()
   // areas
   .then(data => {
     data = countries.getAreas();
+    console.log('Getting areas...');
     return data;
   })
   .then(data => data.forEach(area => {
@@ -84,6 +86,7 @@ countries.getNames()
   // currencies
   .then(data => {
     data = countries.getCurrencies();
+    console.log('Getting currencies...');
     return data;
   })
   .then(data => data.forEach(currencies => {
@@ -94,4 +97,5 @@ countries.getNames()
   // create XLSX file
   .then(data => {
     wb.write('CountriesList.xlsx');
+    console.log('Excel file ready! Open "CountriesList.xlsx".');
   });
