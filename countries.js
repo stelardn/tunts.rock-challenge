@@ -15,7 +15,6 @@ async function getNames() {
   const countriesNames = await getCountriesData()
     .then(data => data.map(({ name }) => name.common));
 
-  console.log(countriesNames);
   return countriesNames;
 }
 
