@@ -28,8 +28,8 @@ async function getAreas() {
   return countriesAreas;
 }
 
-async function getCurrencies() {
-  const countriesCurrencies = await getCountriesData()
+function getCurrencies() {
+  const countriesCurrencies = getCountriesData()
     .then(data => data.map(({ currencies }) => {
       let code = ['-'];
 
