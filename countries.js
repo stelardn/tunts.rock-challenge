@@ -1,16 +1,21 @@
 const fetch = require('node-fetch');
 
-function getCountriesData() {
-  const endpoint = 'https://restcountries.com/v3.1/all';
+async function getCountriesData() {
+  try {
+    const endpoint = 'https://restcountries.com/v3.1/all';
 
-  return fetch(endpoint)
-    .then(data => data.json())
+    return fetch(endpoint)
+      .then(data => data.json());
+  } catch {
+    return "Couldn't connect to RESTCountries"
+  }
 }
 
 async function getNames() {
   const countriesNames = await getCountriesData()
     .then(data => data.map(({ name }) => name.common));
 
+  console.log(countriesNames);
   return countriesNames;
 }
 
@@ -28,8 +33,8 @@ async function getAreas() {
   return countriesAreas;
 }
 
-function getCurrencies() {
-  const countriesCurrencies = getCountriesData()
+async function getCurrencies() {
+  const countriesCurrencies = await getCountriesData()
     .then(data => data.map(({ currencies }) => {
       let code = ['-'];
 
@@ -44,7 +49,7 @@ function getCurrencies() {
 }
 
 module.exports = { getAreas, getCapitals, getCurrencies, getNames, getCountriesData }
-// getNames();
+getNames();
 // getCapitals();
 // getAreas();
 
