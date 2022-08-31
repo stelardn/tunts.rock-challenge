@@ -49,7 +49,4 @@ async function getCurrencies() {
 }
 
 module.exports = { getAreas, getCapitals, getCurrencies, getNames, getCountriesData }
-getNames();
-// getCapitals();
-// getAreas();
 

@@ -36,6 +36,10 @@ ws.cell(2, 2).string('Capital').style(headerStyle);
 ws.cell(2, 3).string('Area').style(headerStyle);
 ws.cell(2, 4).string('Currencies').style(headerStyle);
 
+let areaStyle = {
+  numberFormat: '###,###,###,###.00'
+}
+
 
 // Data to cells
 
@@ -63,7 +67,7 @@ countries.getNames()
   // areas
   .then(countries.getAreas())
   .then(data => data.forEach(area => {
-    ws.cell(areaCounter, 3).string(area)
+    ws.cell(areaCounter, 3).string(area).style(areaStyle);
     areaCounter++;
     console.log(area)
   }))
@@ -76,7 +80,7 @@ countries.getNames()
     console.log(currencies);
   }))
 
-  // create XLXS file
+  // create XLSX file
   .then(data => {
     wb.write('CountriesList.xlsx');
   });
