@@ -27,7 +27,7 @@ async function getCapitals() {
 
 async function getAreas() {
   const countriesAreas = await getCountriesData()
-    .then(data => data.map(({ area }) => area));
+    .then(data => data.map(({ area }) => area || '-'));
 
   return countriesAreas;
 }
